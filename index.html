@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaxsiy Karta Dizayni</title>
+    <!-- Ikonka uchun (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Umumiy sahifa ko'rinishi */
+        body {
+            background-color: #3b71a8;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 50px 20px;
+        }
+
+        /* Oq quti (karta) */
+        .profile-card {
+            background: #ffffff;
+            max-width: 700px;
+            width: 100%;
+            padding: 40px 50px 60px 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            text-align: center;
+            margin-top: 60px;
+            box-sizing: border-box;
+        }
+
+        /* Dumaloq rasm */
+        .profile-image-container {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            object-fit: cover;
+            background-color: #e0e0e0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Ism va lavozim */
+        .profile-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 25px;
+            margin-bottom: 5px;
+        }
+
+        .profile-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        /* "Contact me" (Telegram) tugmasi */
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #326495; /* Moviy rang */
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 0;
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .contact-btn:hover {
+            background-color: #28517a;
+        }
+
+        .contact-btn i {
+            font-size: 18px;
+        }
+
+        /* Github tugmasi (Yangi qo'shildi) */
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #24292e; /* Github qora rangi */
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 0;
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .github-btn:hover {
+            background-color: #000000;
+        }
+
+        .github-btn i {
+            font-size: 18px;
+        }
+
+        /* Matn qismi */
+        .profile-text {
+            text-align: left;
+            color: #555555;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .profile-text p {
+            margin-bottom: 20px;
+        }
+
+        .profile-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Mobil moslashuv */
+        @media (max-width: 500px) {
+            .profile-card {
+                padding: 30px 20px;
+                margin-top: 50px;
+            }
+            .profile-image {
+                width: 100px;
+                height: 100px;
+                top: -50px;
+            }
+            .profile-name {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-card">
+        
+        <!-- Rasm qismi -->
+        <div class="profile-image-container">
+            <img src="/img/5240475128011887075_99.jpg" alt="Profil Rasmi" class="profile-image" id="profileImg">
+        </div>
+
+        <!-- Ism va lavozim -->
+        <h1 class="profile-name">Komil Usmonqulov</h1>
+        <p class="profile-title">Dasturchi, Python, HTML</p>
+
+        <!-- Telegram Tugmasi -->
+        <button class="contact-btn" id="contactBtn" aria-label="Contact me">
+            <i class="fa-regular fa-envelope"></i> Aloqa uchun!
+        </button>
+
+        <!-- Github Tugmasi (Tugma ko'rinishida) -->
+        <a href="https://github.com/komilusmon" target="_blank" rel="noopener noreferrer" class="github-btn">
+            <i class="fa-brands fa-github"></i> Github sahifam
+        </a>
+
+        <!-- Matnlar -->
+        <div class="profile-text">
+            <p>
+                Assalomu aleykum! Men Komil Usmonqulov, Python va HTML dasturlash tillarida tajribaga ega dasturchiman. Ushbu shaxsiy karta orqali men o'zim haqimda qisqacha ma'lumot beraman. Siz mening ishlarimni ko'rishingiz mumkin. Buning uchun mening loyihalarim sahifasiga o'ting yoki menga Telegram orqali murojaat qiling.
+            </p>
+            <p>
+                Githubda 50 ga yaqin sayt va telegram botlar kodlari joylangan. Siz ularni ko'rishingiz va o'zingizga kerakli kodlarni olishingiz mumkin. Shuningdek, men sizga dasturlash bo'yicha maslahatlar berishga tayyorman. Agar sizga yordam kerak bo'lsa, iltimos, menga murojaat qiling.
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        // JavaScript - Telegram tugmasi bosilganda ochiladi
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactButton = document.getElementById('contactBtn');
+            
+            contactButton.addEventListener('click', function() {
+                // Telegram profilingizga yangi oynada yo'naltirish
+                window.open('https://t.me/komilusmondev', '_blank');
+            });
+        });
+    </script>
+
+</body>
+</html>

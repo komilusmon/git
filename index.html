@@ -3,20 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaxsiy Karta Dizayni</title>
-    <!-- Ikonka uchun (FontAwesome) -->
+    <title>Komil Usmonqulov - Shaxsiy Karta</title>
+    <!-- FontAwesome ikonkalari -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Umumiy sahifa ko'rinishi */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: #3b71a8;
+            background: linear-gradient(135deg, #3b71a8 0%, #2c5a8c 100%);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 50px 20px;
+            padding: 20px;
+        }
+
+        /* E'lon qatori (marquee o'rniga) */
+        .announcement-bar {
+            background-color: #ffd700;
+            color: #333;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+            text-align: center;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
 
         /* Oq quti (karta) */
@@ -24,106 +53,123 @@
             background: #ffffff;
             max-width: 700px;
             width: 100%;
-            padding: 40px 50px 60px 50px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 40px 50px 50px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             position: relative;
             text-align: center;
-            margin-top: 60px;
+            margin-top: 70px;
             box-sizing: border-box;
         }
 
         /* Dumaloq rasm */
         .profile-image-container {
             position: absolute;
-            top: -60px;
+            top: -70px;
             left: 50%;
             transform: translateX(-50%);
         }
 
         .profile-image {
-            width: 120px;
-            height: 120px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            border: 4px solid #ffffff;
+            border: 5px solid #ffffff;
             object-fit: cover;
             background-color: #e0e0e0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
         }
 
         /* Ism va lavozim */
         .profile-name {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
             color: #1a1a1a;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 25px;
-            margin-bottom: 5px;
+            letter-spacing: 2px;
+            margin-top: 20px;
+            margin-bottom: 8px;
         }
 
         .profile-title {
             font-size: 16px;
             font-weight: 600;
-            color: #2c2c2c;
+            color: #3b71a8;
             margin-top: 0;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Tugmalar uchun konteyner */
+        .buttons-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
         /* "Contact me" (Telegram) tugmasi */
         .contact-btn {
+            flex: 1;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background-color: #326495; /* Moviy rang */
+            background-color: #0088cc; /* Telegram ko'k rangi */
             color: #ffffff;
             font-size: 16px;
             font-weight: 600;
-            padding: 12px 0;
-            width: 100%;
+            padding: 14px 0;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             text-decoration: none;
-            transition: background-color 0.3s ease;
-            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
         }
 
         .contact-btn:hover {
-            background-color: #28517a;
+            background-color: #0077b5;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4);
         }
 
         .contact-btn i {
-            font-size: 18px;
+            font-size: 20px;
         }
 
-        /* Github tugmasi (Yangi qo'shildi) */
+        /* Github tugmasi */
         .github-btn {
+            flex: 1;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background-color: #24292e; /* Github qora rangi */
+            background-color: #24292e;
             color: #ffffff;
             font-size: 16px;
             font-weight: 600;
-            padding: 12px 0;
-            width: 100%;
+            padding: 14px 0;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             text-decoration: none;
-            transition: background-color 0.3s ease;
-            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(36, 41, 46, 0.3);
         }
 
         .github-btn:hover {
             background-color: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(36, 41, 46, 0.4);
         }
 
         .github-btn i {
-            font-size: 18px;
+            font-size: 20px;
         }
 
         /* Matn qismi */
@@ -131,81 +177,135 @@
             text-align: left;
             color: #555555;
             font-size: 15px;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         .profile-text p {
             margin-bottom: 20px;
+            padding: 0 10px;
         }
 
         .profile-text p:last-child {
             margin-bottom: 0;
         }
 
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #ffffff;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
         /* Mobil moslashuv */
-        @media (max-width: 500px) {
+        @media (max-width: 600px) {
             .profile-card {
-                padding: 30px 20px;
-                margin-top: 50px;
+                padding: 30px 20px 40px 20px;
+                margin-top: 60px;
             }
+            
             .profile-image {
-                width: 100px;
-                height: 100px;
-                top: -50px;
+                width: 120px;
+                height: 120px;
             }
+            
+            .profile-image-container {
+                top: -60px;
+            }
+            
             .profile-name {
-                font-size: 18px;
+                font-size: 20px;
+                margin-top: 15px;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .profile-text {
+                font-size: 14px;
+            }
+            
+            .announcement-bar {
+                font-size: 13px;
+                padding: 10px 15px;
             }
         }
     </style>
 </head>
 <body>
-    <marquee>
-        KomilUsmonDev xizmatlaridan foydalaning!, Birinchi xizmatdan foydalanish bepul.
-    </marquee>
+    <!-- E'lon qatori (marquee o'rniga zamonaviy alternativ) -->
+    <div class="announcement-bar">
+        🚀 KomilUsmonDev xizmatlaridan foydalaning! Birinchi xizmatdan foydalanish <strong>bepul</strong>.
+    </div>
 
     <div class="profile-card">
         
         <!-- Rasm qismi -->
         <div class="profile-image-container">
-            <img src="/img/5240475128011887075_99.jpg" alt="Profil Rasmi" class="profile-image" id="profileImg">
+            <img src="./img/5240475128011887075_99.jpg" 
+                 alt="Komil Usmonqulov profil rasmi" 
+                 class="profile-image" 
+                 id="profileImg"
+                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22%3E%3Crect fill=%22%23ddd%22 width=%22140%22 height=%22140%22/%3E%3Ctext fill=%22%23999%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2216%22%3ERasm yo%27q%3C/text%3E%3C/svg%3E'">
         </div>
 
         <!-- Ism va lavozim -->
         <h1 class="profile-name">Komil Usmonqulov</h1>
-        <p class="profile-title">Dasturchi, Python, HTML</p>
+        <p class="profile-title">💻 Dasturchi | Python | HTML | CSS</p>
 
-        <!-- Telegram Tugmasi -->
-        <button class="contact-btn" id="contactBtn" aria-label="Contact me">
-            <i class="fa-regular fa-envelope"></i> Aloqa uchun!
-        </button>
+        <!-- Tugmalar konteyneri -->
+        <div class="buttons-container">
+            <!-- Telegram Tugmasi -->
+            <button class="contact-btn" id="contactBtn" aria-label="Telegram orqali aloqa">
+                <i class="fa-brands fa-telegram"></i> Aloqa uchun
+            </button>
 
-        <!-- Github Tugmasi (Tugma ko'rinishida) -->
-        <a href="https://github.com/komilusmon" target="_blank" rel="noopener noreferrer" class="github-btn">
-            <i class="fa-brands fa-github"></i> Github sahifam
-        </a>
+            <!-- Github Tugmasi -->
+            <a href="https://github.com/komilusmon" target="_blank" rel="noopener noreferrer" class="github-btn">
+                <i class="fa-brands fa-github"></i> Github sahifam
+            </a>
+        </div>
 
         <!-- Matnlar -->
         <div class="profile-text">
             <p>
-                Assalomu aleykum! Men Komil Usmonqulov, Python va HTML dasturlash tillarida tajribaga ega dasturchiman. Ushbu shaxsiy karta orqali men o'zim haqimda qisqacha ma'lumot beraman. Siz mening ishlarimni ko'rishingiz mumkin. Buning uchun mening loyihalarim sahifasiga o'ting yoki menga Telegram orqali murojaat qiling.
+                👋 <strong>Assalomu aleykum!</strong> Men Komil Usmonqulov, Python va HTML dasturlash tillarida tajribaga ega dasturchiman. Ushbu shaxsiy karta orqali men o'zim haqimda qisqacha ma'lumot beraman. Siz mening ishlarimni ko'rishingiz mumkin. Buning uchun mening loyihalarim sahifasiga o'ting yoki menga Telegram orqali murojaat qiling.
             </p>
             <p>
-                Githubda 50 ga yaqin sayt va telegram botlar kodlari joylangan. Siz ularni ko'rishingiz va o'zingizga kerakli kodlarni olishingiz mumkin. Shuningdek, men sizga dasturlash bo'yicha maslahatlar berishga tayyorman. Agar sizga yordam kerak bo'lsa, iltimos, menga murojaat qiling.
+                📂 Githubda <strong>50 ga yaqin</strong> sayt va telegram botlar kodlari joylangan. Siz ularni ko'rishingiz va o'zingizga kerakli kodlarni olishingiz mumkin. Shuningdek, men sizga dasturlash bo'yicha maslahatlar berishga tayyorman. Agar sizga yordam kerak bo'lsa, iltimos, menga murojaat qiling.
             </p>
         </div>
 
     </div>
 
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 KomilUsmonDev. Barcha huquqlar himoyalangan.</p>
+    </div>
+
     <script>
-        // JavaScript - Telegram tugmasi bosilganda ochiladi
+        // JavaScript - DOM to'liq yuklangandan keyin ishga tushadi
         document.addEventListener('DOMContentLoaded', function() {
             const contactButton = document.getElementById('contactBtn');
             
-            contactButton.addEventListener('click', function() {
-                // Telegram profilingizga yangi oynada yo'naltirish
-                window.open('https://t.me/komilusmondev', '_blank');
-            });
+            if (contactButton) {
+                contactButton.addEventListener('click', function() {
+                    // Telegram profilingizga yangi oynada yo'naltirish
+                    window.open('https://t.me/komilusmondev', '_blank');
+                });
+            }
+
+            // Rasm yuklanmasa, placeholder ko'rsatish
+            const profileImg = document.getElementById('profileImg');
+            if (profileImg) {
+                profileImg.addEventListener('error', function() {
+                    this.style.display = 'none';
+                    console.log('Rasm yuklanmadi. Iltimos, rasm manzilini tekshiring: ./img/5240475128011887075_99.jpg');
+                });
+            }
         });
     </script>
 

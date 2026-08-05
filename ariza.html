@@ -315,10 +315,9 @@
     </div>
 
     <script>
-        // EmailJS ni inizializatsiya qilish
+        // EmailJS ni inizializatsiya qilish - Sizning Public Key
         (function() {
-            // BU YERGA O'Z EmailJS PUBLIC KEY ni QO'YING
-            emailjs.init("L8EVbFKC61KtkIqh5"); // Public Key ni shu yerga qo'ying
+            emailjs.init("L8EVbFKC61KtkIqh5");
         })();
 
         document.getElementById('applicationForm').addEventListener('submit', function(e) {
@@ -346,22 +345,22 @@
                 minute: '2-digit'
             });
             
-            // Forma ma'lumotlarini olish (Template parametrlariga moslab)
+            // Forma ma'lumotlarini olish
             const templateParams = {
                 from_name: document.getElementById('fullName').value,
                 from_email: document.getElementById('email').value,
                 phone: document.getElementById('phone').value,
                 service: document.getElementById('service').value,
-                message: document.getElementById('description').value, // template da {{message}} deb kelyapti
+                message: document.getElementById('description').value,
                 budget: document.getElementById('budget').value || 'Ko\'rsatilmagan',
-                time: formattedDate, // template da {{time}} deb kelyapti
+                time: formattedDate,
                 reply_to: document.getElementById('email').value
             };
             
             // EmailJS orqali yuborish
             emailjs.send(
                 'service_7qke6v9',      // Sizning Service ID
-                'template_6lx0cr9',      // Template ID ni shu yerga qo'ying
+                'template_semst19',      // Sizning Template ID
                 templateParams
             )
             .then(function(response) {
@@ -372,11 +371,16 @@
                 
                 // Formani tozalash
                 document.getElementById('applicationForm').reset();
+                
+                // 3 soniyadan keyin bosh sahifaga qaytish
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 3000);
             }, function(error) {
                 console.log('FAILED...', error);
                 
                 // Xatolik xabari
-                showMessage('error', '❌ Xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring yoki Telegram orqali bog\'laning.');
+                showMessage('error', '❌ Xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring yoki Telegram orqali bog\'laning: @komilusmondev');
             })
             .finally(function() {
                 // Loading holatini o'chirish

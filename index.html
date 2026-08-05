@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Komil Usmonqulov - Shaxsiy Karta</title>
-    <!-- FontAwesome ikonkalari -->
+    <title>Komil Usmonqulov - Aylanuvchi Karta</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Umumiy sahifa ko'rinishi */
         * {
             margin: 0;
             padding: 0;
@@ -15,194 +13,256 @@
         }
 
         body {
-            background: linear-gradient(135deg, #3b71a8 0%, #2c5a8c 100%);
+            background: linear-gradient(135deg, #3b71a8 0%, #1e3c5c 100%);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
             padding: 20px;
+            perspective: 1000px;
         }
 
-        /* E'lon qatori (marquee o'rniga) */
+        /* E'lon qatori */
         .announcement-bar {
-            background-color: #ffd700;
+            background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+            background-size: 200% 100%;
             color: #333;
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            font-weight: 600;
-            font-size: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            animation: pulse 2s infinite;
+            padding: 15px 25px;
+            border-radius: 50px;
+            margin-bottom: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: slideAnnouncement 3s ease-in-out infinite;
             text-align: center;
-            max-width: 700px;
+            max-width: 600px;
             width: 100%;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
-
-        /* Oq quti (karta) */
-        .profile-card {
-            background: #ffffff;
-            max-width: 700px;
-            width: 100%;
-            padding: 40px 50px 50px 50px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             position: relative;
-            text-align: center;
-            margin-top: 70px;
-            box-sizing: border-box;
+            overflow: hidden;
         }
 
-        /* Dumaloq rasm */
-        .profile-image-container {
+        .announcement-bar::before {
+            content: '';
             position: absolute;
-            top: -70px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(255,255,255,0.5),
+                transparent
+            );
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        @keyframes slideAnnouncement {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Karta konteyneri - aylanish uchun */
+        .card-wrapper {
+            width: 100%;
+            max-width: 700px;
+            height: 500px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCard 15s linear infinite;
+            cursor: pointer;
+        }
+
+        .card-wrapper:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes rotateCard {
+            0% {
+                transform: rotateY(0deg);
+            }
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        /* Karta old va orqa tomonlari */
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        /* Old tomon */
+        .card-front {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+            z-index: 2;
+        }
+
+        /* Orqa tomon */
+        .card-back {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            transform: rotateY(180deg);
+            color: white;
+        }
+
+        /* Profil rasmi */
+        .profile-image-container {
+            position: relative;
+            margin-bottom: 20px;
         }
 
         .profile-image {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            border: 5px solid #ffffff;
+            border: 5px solid #3b71a8;
             object-fit: cover;
             background-color: #e0e0e0;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: floatImage 3s ease-in-out infinite;
         }
 
-        .profile-image:hover {
-            transform: scale(1.05);
+        @keyframes floatImage {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         /* Ism va lavozim */
         .profile-name {
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 28px;
+            font-weight: 800;
             color: #1a1a1a;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 20px;
-            margin-bottom: 8px;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
         }
 
         .profile-title {
             font-size: 16px;
             font-weight: 600;
             color: #3b71a8;
-            margin-top: 0;
-            margin-bottom: 30px;
-            letter-spacing: 0.5px;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
         }
 
-        /* Tugmalar uchun konteyner */
+        /* Tugmalar */
         .buttons-container {
             display: flex;
             gap: 15px;
-            margin-bottom: 30px;
+            width: 100%;
         }
 
-        /* "Contact me" (Telegram) tugmasi */
-        .contact-btn {
+        .contact-btn, .github-btn {
             flex: 1;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background-color: #0088cc; /* Telegram ko'k rangi */
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 14px 0;
+            padding: 14px 20px;
             border: none;
-            border-radius: 8px;
+            border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, #0088cc, #006699);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
         }
 
         .contact-btn:hover {
-            background-color: #0077b5;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 136, 204, 0.6);
         }
 
-        .contact-btn i {
-            font-size: 20px;
-        }
-
-        /* Github tugmasi */
         .github-btn {
-            flex: 1;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background-color: #24292e;
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 14px 0;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(36, 41, 46, 0.3);
+            background: linear-gradient(135deg, #24292e, #000000);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
 
         .github-btn:hover {
-            background-color: #000000;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(36, 41, 46, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
         }
 
-        .github-btn i {
+        /* Orqa tomon dizayni */
+        .card-back .back-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .card-back .skills-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .card-back .skills-list li {
+            padding: 10px;
+            margin: 8px 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .card-back .skills-list i {
             font-size: 20px;
         }
 
-        /* Matn qismi */
-        .profile-text {
-            text-align: left;
-            color: #555555;
-            font-size: 15px;
-            line-height: 1.8;
+        /* Yulduzchalar animatsiyasi */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
 
-        .profile-text p {
-            margin-bottom: 20px;
-            padding: 0 10px;
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
         }
 
-        .profile-text p:last-child {
-            margin-bottom: 0;
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
         }
 
-        /* Footer */
-        .footer {
-            margin-top: 30px;
-            text-align: center;
-            color: #ffffff;
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        /* Mobil moslashuv */
-        @media (max-width: 600px) {
-            .profile-card {
-                padding: 30px 20px 40px 20px;
-                margin-top: 60px;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card-wrapper {
+                height: 550px;
             }
             
             .profile-image {
@@ -210,104 +270,122 @@
                 height: 120px;
             }
             
-            .profile-image-container {
-                top: -60px;
-            }
-            
             .profile-name {
-                font-size: 20px;
-                margin-top: 15px;
+                font-size: 22px;
             }
             
             .buttons-container {
                 flex-direction: column;
-                gap: 10px;
             }
             
-            .profile-text {
-                font-size: 14px;
-            }
-            
-            .announcement-bar {
-                font-size: 13px;
-                padding: 10px 15px;
+            .card-face {
+                padding: 25px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- E'lon qatori (marquee o'rniga zamonaviy alternativ) -->
+    <!-- E'lon qatori -->
     <div class="announcement-bar">
-        🚀 KomilUsmonDev xizmatlaridan foydalaning! Birinchi xizmatdan foydalanish <strong>bepul</strong>.
+        🚀 KomilUsmonDev xizmatlaridan foydalaning! | Birinchi xizmat <strong>BEPUL</strong> 🎉
     </div>
 
-    <div class="profile-card">
+    <!-- Aylanuvchi karta -->
+    <div class="card-wrapper" id="cardWrapper">
         
-        <!-- Rasm qismi -->
-        <div class="profile-image-container">
-            <img src="./img/5240475128011887075_99.jpg" 
-                 alt="Komil Usmonqulov profil rasmi" 
-                 class="profile-image" 
-                 id="profileImg"
-                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22%3E%3Crect fill=%22%23ddd%22 width=%22140%22 height=%22140%22/%3E%3Ctext fill=%22%23999%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2216%22%3ERasm yo%27q%3C/text%3E%3C/svg%3E'">
+        <!-- Old tomon -->
+        <div class="card-face card-front">
+            <div class="profile-image-container">
+                <img src="./img/5240475128011887075_99.jpg" 
+                     alt="Komil Usmonqulov" 
+                     class="profile-image"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22%3E%3Ccircle fill=%22%23ddd%22 cx=%2275%22 cy=%2275%22 r=%2275%22/%3E%3Ctext fill=%22%23999%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ERasm%3C/text%3E%3C/svg%3E'">
+            </div>
+            
+            <h1 class="profile-name">Komil Usmonqulov</h1>
+            <p class="profile-title">💻 Full Stack Dasturchi | Python • HTML • CSS</p>
+            
+            <div class="buttons-container">
+                <button class="contact-btn" id="contactBtn">
+                    <i class="fa-brands fa-telegram"></i> Telegram
+                </button>
+                
+                <a href="https://github.com/komilusmon" target="_blank" class="github-btn">
+                    <i class="fa-brands fa-github"></i> Github
+                </a>
+            </div>
         </div>
-
-        <!-- Ism va lavozim -->
-        <h1 class="profile-name">Komil Usmonqulov</h1>
-        <p class="profile-title">💻 Dasturchi | Python | HTML | CSS</p>
-
-        <!-- Tugmalar konteyneri -->
-        <div class="buttons-container">
-            <!-- Telegram Tugmasi -->
-            <button class="contact-btn" id="contactBtn" aria-label="Telegram orqali aloqa">
-                <i class="fa-brands fa-telegram"></i> Aloqa uchun
-            </button>
-
-            <!-- Github Tugmasi -->
-            <a href="https://github.com/komilusmon" target="_blank" rel="noopener noreferrer" class="github-btn">
-                <i class="fa-brands fa-github"></i> Github sahifam
-            </a>
-        </div>
-
-        <!-- Matnlar -->
-        <div class="profile-text">
-            <p>
-                👋 <strong>Assalomu aleykum!</strong> Men Komil Usmonqulov, Python va HTML dasturlash tillarida tajribaga ega dasturchiman. Ushbu shaxsiy karta orqali men o'zim haqimda qisqacha ma'lumot beraman. Siz mening ishlarimni ko'rishingiz mumkin. Buning uchun mening loyihalarim sahifasiga o'ting yoki menga Telegram orqali murojaat qiling.
+        
+        <!-- Orqa tomon -->
+        <div class="card-face card-back">
+            <div class="stars" id="starsContainer"></div>
+            
+            <h2 class="back-title">🌟 Mening Texnologiyalarim</h2>
+            
+            <ul class="skills-list">
+                <li><i class="fa-brands fa-python"></i> Python Dasturlash</li>
+                <li><i class="fa-brands fa-html5"></i> HTML5</li>
+                <li><i class="fa-brands fa-css3-alt"></i> CSS3</li>
+                <li><i class="fa-brands fa-js"></i> JavaScript</li>
+                <li><i class="fa-solid fa-robot"></i> Telegram Bot</li>
+                <li><i class="fa-solid fa-code"></i> 50+ Github Loyihalar</li>
+            </ul>
+            
+            <p style="margin-top: 20px; text-align: center; opacity: 0.9;">
+                📍 Dasturlash bo'yicha maslahatlar va yordam uchun murojaat qiling!
             </p>
-            <p>
-                📂 Githubda <strong>50 ga yaqin</strong> sayt va telegram botlar kodlari joylangan. Siz ularni ko'rishingiz va o'zingizga kerakli kodlarni olishingiz mumkin. Shuningdek, men sizga dasturlash bo'yicha maslahatlar berishga tayyorman. Agar sizga yordam kerak bo'lsa, iltimos, menga murojaat qiling.
-            </p>
         </div>
-
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>© 2024 KomilUsmonDev. Barcha huquqlar himoyalangan.</p>
-    </div>
+    <!-- Ko'rsatma matni -->
+    <p style="color: white; margin-top: 30px; opacity: 0.7; font-size: 14px;">
+        💡 Sichqonchani karta ustiga olib keling - aylanish to'xtaydi
+    </p>
 
     <script>
-        // JavaScript - DOM to'liq yuklangandan keyin ishga tushadi
-        document.addEventListener('DOMContentLoaded', function() {
-            const contactButton = document.getElementById('contactBtn');
-            
-            if (contactButton) {
-                contactButton.addEventListener('click', function() {
-                    // Telegram profilingizga yangi oynada yo'naltirish
-                    window.open('https://t.me/komilusmondev', '_blank');
-                });
-            }
+        // Telegram tugmasi
+        document.getElementById('contactBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            window.open('https://t.me/komilusmondev', '_blank');
+        });
 
-            // Rasm yuklanmasa, placeholder ko'rsatish
-            const profileImg = document.getElementById('profileImg');
-            if (profileImg) {
-                profileImg.addEventListener('error', function() {
-                    this.style.display = 'none';
-                    console.log('Rasm yuklanmadi. Iltimos, rasm manzilini tekshiring: ./img/5240475128011887075_99.jpg');
-                });
+        // Karta bosilganda aylanishni to'xtatish/ishga tushirish
+        const cardWrapper = document.getElementById('cardWrapper');
+        let isPaused = false;
+
+        cardWrapper.addEventListener('click', function() {
+            if (isPaused) {
+                this.style.animationPlayState = 'running';
+                isPaused = false;
+            } else {
+                this.style.animationPlayState = 'paused';
+                isPaused = true;
             }
         });
-    </script>
 
+        // Yulduzchalar yaratish (orqa tomonda)
+        function createStars() {
+            const starsContainer = document.getElementById('starsContainer');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 2 + 's';
+                star.style.animationDuration = Math.random() * 2 + 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        createStars();
+
+        // Rasm xatoligini kuzatish
+        const profileImg = document.querySelector('.profile-image');
+        profileImg.addEventListener('error', function() {
+            console.warn('Rasm yuklanmadi. Iltimos, rasm manzilini tekshiring: ./img/5240475128011887075_99.jpg');
+        });
+    </script>
 </body>
 </html>
